@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email & Pwd checker</title>
+</head>
+<body>
+    <script src = "script.js"></script>
+    <div>
+    <form>
+        <fieldset>
+        <legend>Enter email and password</legend>
+        <p>
+            Email : <br>
+            Has to be in the format of abc@ghf.com
+        </p>
+        <p>
+            Password : 
+            Has 6 - 16 characters<br>
+            Has at least one number;<br>
+            Has at least one special character.
+        </p>
+        <br>
+    <input  id="email" placeholder="abc@ghf.com" ><br><br>
+    <input type="password" id="password" placeholder="password" required pattern="cat"><br><br>
+    <button onclick="checkPasswordAndEmail()">Submit</button>
+    </fieldset>
+    </form>
+    <h4 id ="validPassword"></h4>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+import os
+import time
+f = open("hello.txt", 'r')
+# f.write("The file has content\n")
+# f.write("Now it has some more content")
+# f.close()
+# f = open("hello.txt", 'r')
+# print(f.read())
+# f.close()
+# f = open("hello.txt", 'a')
+# f.write("\nNow I added some more...")
+# # f.truncate(20)
+print(f.readable())
+    # print (line)
+# print(f.read().split())
+f.close()

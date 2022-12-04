@@ -1,0 +1,15 @@
+data=input()
+data=data.replace(","," ")
+x=[]
+l=data.split()
+temp="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+for ele in l:
+    if "[" in ele and "]" in ele and "-" in ele and ele[ele.index("[")-1] in temp:
+        t=ele.replace("["," ")
+        t=t.replace("]","")
+        x.append(t)
+if len(x)>0:
+    for ele in x:
+        print(ele)
+else:
+    print("-1")

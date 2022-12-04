@@ -1,0 +1,1608 @@
+// 1.Write a program to perform the following operations on singly linked list:
+// i)Creation	ii) Insertion	iii) Deletion	iv) Traversal	v) length of the linked list
+
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+};
+
+class Linkedlist {
+public:
+    Node *hptr = NULL;
+    void create(int d) {
+        if (hptr == NULL) {
+            Node *temp = new Node(d);
+            hptr = temp;
+        } else {
+            Node *temp = hptr;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            Node *nptr = new Node(d);
+            temp->next = nptr;
+        }
+    }
+    void display() {
+        Node *t = hptr;
+        while (t != NULL) {
+            cout << t->data << "->";
+            t = t->next;
+        }
+    }
+    void deletenode(int x) {
+        if (hptr == NULL) {
+            cout << "List is empty\n";
+            return;
+        }
+        Node *temp = hptr, *prev;
+        while (temp != NULL) {
+            if (temp->data == x) {
+                if (temp == hptr) {
+                    hptr = temp->next;
+                } else {
+                    prev->next = temp->next;
+                }
+                cout << "Node deleted\n";
+                delete temp;
+                return;
+            }
+            prev = temp;
+            temp = temp->next;
+        }
+        cout << "Element not found\n";
+    }
+    void addatbeg(int x) {
+        Node *temp = hptr;
+        Node *nn = new Node(x);
+        if (nn == NULL) {
+            cout << "Unable to create node\n";
+            return;
+        }
+        nn->next = temp;
+        hptr = nn;
+    }
+    void addatpos(int x, int p) {
+        Node *temp = hptr;
+        Node *nn = new Node(x);
+        for (int i = 1; i < p; i++) {
+            temp = temp->next;
+            if (temp == NULL) {
+                create(x);
+                return;
+            }
+        }
+        nn->next = temp->next;
+        temp->next = nn;
+    }
+    void length() {
+        Node *t = hptr;
+        int len = 0;
+        while (t != NULL) {
+            //cout<<t->data<<"->";
+            t = t->next;
+            len++;
+        }
+        cout << "length of the list:" << len;
+    }
+};
+
+int main() {
+    Linkedlist l;
+    int x, ch, ele, pos;
+    while (1) {
+        cout << "\n1.Create\n";
+        cout << "2.Display\n";
+        cout << "3.Insertion_at_begin\n";
+        cout << "4.Insert_at_position\n";
+        cout << "5.Delete\n";
+        cout << "6.length\n";
+        cout << "7.exit\n";
+        cout << "Enter choice\n";
+        cin >> ch;
+        switch (ch) {
+            case 1:
+                cout << "Enter a value\n";
+                cin >> x;
+                l.create(x);
+                break;
+            case 2:
+                l.display();
+                break;
+            case 3:
+                cout << "Enter a value\n";
+                cin >> x;
+                l.addatbeg(x);
+                break;
+            case 4:
+                cout << "Enter a value\n";
+                cin >> x;
+                cout << "enter the position\n";
+                cin >> pos;
+                l.addatpos(x, pos);
+                break;
+            case 5:
+                cout << "Enter a element to delete\n";
+                cin >> ele;
+                l.deletenode(ele);
+                break;
+            case 6:
+                l.length();
+                break;
+            case 7:
+                exit(0);
+        }
+    }
+    return 0;
+}
+
+// Output:
+// 1.Create
+
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 1
+// Enter a value
+// 10
+
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 1
+// Enter a value
+// 20
+
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 2
+// 10 20
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 3
+// Enter a value
+// 5
+
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 2
+// 5 10 20
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 4
+// Enter a value
+// 2
+// enter the position
+// 2
+
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 2
+// 5 10 2 20
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 5
+// Enter a element to delete
+// 5
+// Node deleted
+
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 2
+// 10 2 20
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 5
+// Enter a element to delete
+// 20
+// Node deleted
+
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 2
+// 10 2
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 6
+// length of the list:2
+// 1.Create
+// 2.Display
+// 3.Insertion_at_begin
+// 4.Insert_at_position
+// 5.Delete
+// 6.length
+// 7.exit
+// Enter choice
+// 7
+
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int data;
+    Node *next;
+    Node *prev;
+    Node(int d) {
+        data = d;
+        next = NULL;
+        prev = NULL;
+    }
+    void display() {
+        cout << data << endl;
+    }
+};
+class DLL {
+public:
+    Node *hptr = NULL;
+    Node *tptr = NULL;
+    void create(int d) {
+        Node *nptr = new Node(d);
+        if (hptr == NULL) {
+            hptr = tptr = nptr;
+        } else {
+            tptr->next = nptr;
+            nptr->prev = tptr;
+            tptr = nptr;
+        }
+    }
+    // add node at front / Beginning function
+    void addatbeg(int d) {
+        Node *nptr = new Node(d);  // new allocate new node of type Node and return address in nptr
+        if (hptr == NULL) {
+            hptr = tptr = nptr;
+        } else {
+            hptr->prev = nptr;  // previous first node point to new node
+            nptr->next = hptr;  // new node next point to previous first node whose address is in head
+            hptr = nptr;        // head point to new node
+        }
+    }
+    void delete_node(int d) {
+        if (hptr->data == d) {
+            Node *temp = hptr;
+            temp->next->prev = NULL;
+            hptr = temp->next;
+        } else {
+            if (tptr->data == d) {
+                Node *temp = tptr;
+                temp->prev->next = NULL;
+                tptr = temp->prev;
+            } else {
+                Node *temp = hptr;
+                while (temp != NULL) {
+                    if (temp->next != NULL && temp->next->data == d) {
+                        temp->next = temp->next->next;
+                        temp->next->prev = temp;
+                        break;
+                    }
+                    temp = temp->next;
+                }
+                if (temp == NULL)
+                    cout << "Element Not Found!" << endl;
+            }
+        }
+    }
+    void forward_display() {
+        Node *temp = hptr;
+        while (temp != NULL) {
+            temp->display();
+            temp = temp->next;
+        }
+    }
+    void reverse_display() {
+        Node *temp = tptr;
+        while (temp != NULL) {
+            temp->display();
+            temp = temp->prev;
+        }
+    }
+};
+int main() {
+    DLL dll;
+    int ch, x, ele, pos;
+    while (1) {
+        cout << "\n1.Create\n";
+        cout << "2.Display\n";
+        cout << "3.Insertion_at_begin\n";
+        cout << "4.Delete\n";
+        cout << "5.Print in reverse\n";
+        cout << "6.exit\n";
+        cout << "Enter choice\n";
+        cin >> ch;
+        switch (ch) {
+            case 1:
+                cout << "Enter a value\n";
+                cin >> x;
+                dll.create(x);
+                break;
+            case 2:
+                cout << "Elements of List " << endl;
+                dll.forward_display();
+                break;
+            case 3:
+                cout << "Enter a value\n";
+                cin >> x;
+                dll.addatbeg(x);
+                break;
+            case 4:
+                cout << "Enter a element to delete\n";
+                cin >> ele;
+                dll.delete_node(ele);
+                break;
+            case 5:
+                cout << "Reverse Display" << endl;
+                dll.reverse_display();
+                break;
+            case 6:
+                exit(0);
+        }
+    }
+    return 0;
+}
+/*
+Output : 
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+1
+Enter a value
+12
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+1
+Enter a value
+13
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+1
+Enter a value
+14
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+3
+Enter a value
+10
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+2
+Elements of List 
+10
+12
+13
+14
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+4
+Enter a element to delete
+13
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+5
+Reverse Display
+14
+12
+10
+
+1.Create
+2.Display
+3.Insertion_at_begin
+4.Delete
+5.Print in reverse
+6.exit
+Enter choice
+6
+
+*/
+//  3.Write a program to perform the following operations on circular linked list:
+// i)Creation	ii) Insertion	iii) Deletion	iv) Traversal	v) Count of nodes
+
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+    void display() {
+        cout << data;
+    }
+};
+class CircularLinkedList {
+public:
+    Node *last = NULL;
+    void InsertAtBegining(int d) {
+        Node *temp = new Node(d);
+        if (last == NULL) {     // for first node insertion
+            last = temp;        // last point to temp node as last node
+            last->next = last;  // last next point to temp node as first node
+        } else {                // for another node insertion
+            temp->next = last->next;
+            // temp as begining node point previous node first node to make it second node in CSLL
+            last->next = temp;  // last next point to temp node as first node
+        }
+    }
+    void InsertAtEnd(int d) {
+        Node *temp = new Node(d);
+        if (last == NULL) {     // for first node insertion
+            last = temp;        // last point to temp node as last node
+            last->next = last;  // last next point to temp node as first node
+        } else {                // for another node insertion
+            temp->next = last->next;
+            // temp as last node holds address of first node in CSLL
+            last->next = temp;
+            // previous last node next point to temp node as now temp is Circular Linked List node
+            last = temp;  // make last to temp as it is now last node
+        }
+    }
+    void addAfter(int ndata, int afteritem) {
+        if (last == NULL)
+            cout << "List is empty";
+        else {
+            Node *temp, *p;
+            p = last->next;
+            do {
+                if (p->data == afteritem) {
+                    Node *temp = new Node(ndata);
+                    temp->next = p->next;
+                    p->next = temp;
+                    if (p == last) {
+                        last = temp;
+                    }
+                    return;
+                }
+                p = p->next;
+            } while (p != last->next);
+            cout << "\n"
+                 << afteritem << " not present in the list." << endl;
+            return;
+        }
+    }
+    // To display  CSLL elements value
+    void display() {
+        Node *temp = last;
+        if (last == NULL) {
+            cout << "List is empty." << endl;
+            return;
+        }
+        // Pointing to first Node of the list.
+        temp = last->next;
+        // Traversing the list.
+        do {
+            cout << temp->data << " ";
+            temp = temp->next;
+        } while (temp != last->next);
+    }
+    void deletenode(int value) {
+        Node *temp = last->next;
+        if (temp->data == value) {  //To delete first node
+            last->next = temp->next;
+        } else {
+            if (last->data == value) {  //To delete last node
+                while (temp->next != last) {
+                    temp = temp->next;
+                }
+                temp->next = last->next;
+                last = temp;
+            } else {  //To delete a node between first and last
+                while (temp->next->data != value) {
+                    temp = temp->next;
+                }
+                temp->next = temp->next->next;
+            }
+        }
+    }
+    void count() {
+        Node *temp = last;
+        int c = 0;
+        if (last == NULL) {
+            cout << "List is empty." << endl;
+            return;
+        }
+        // Pointing to first Node of the list.
+        temp = last->next;
+        // Traversing the list.
+        do {
+            c++;
+            temp = temp->next;
+        } while (temp != last->next);
+        cout << "Total no of nodes in list:" << c;
+    }
+};
+// driver program
+int main() {
+    CircularLinkedList l;
+    int x, ch, ele, data;
+    while (1) {
+        cout << "\n1.create(insert_at_end)\n";
+        cout << "2.Display\n";
+        cout << "3.Insertion_at_begin\n";
+        cout << "4.Insert_after\n";
+        cout << "5.Delete\n";
+        cout << "6.count\n";
+        cout << "7.exit\n";
+        cout << "Enter choice\n";
+        cin >> ch;
+        switch (ch) {
+            case 1:
+                cout << "Enter a value\n";
+                cin >> x;
+                l.InsertAtEnd(x);
+                break;
+            case 2:
+                l.display();
+                break;
+            case 3:
+                cout << "Enter a value\n";
+                cin >> x;
+                l.InsertAtBegining(x);
+                break;
+            case 4:
+                cout << "Enter a value\n";
+                cin >> x;
+                cout << "enter the data after u want to insert \n";
+                cin >> data;
+                l.addAfter(x, data);
+                break;
+            case 5:
+                cout << "Enter a element to delete\n";
+                cin >> ele;
+                l.deletenode(ele);
+                break;
+            case 6:
+                l.count();
+                break;
+            case 7:
+                exit(0);
+        }
+    }
+    return 0;
+}
+/*
+Output:
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+1
+Enter a value
+10
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+1
+Enter a value
+20
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+1
+Enter a value
+30
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+1
+Enter a value
+40
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+2
+10 20 30 40 
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+3
+Enter a value
+5
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+2
+5 10 20 30 40 
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+4
+Enter a value
+35
+enter the data after u want to insert 
+30
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+2
+5 10 20 30 35 40 
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+5
+Enter a element to delete
+5
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+2
+10 20 30 35 40 
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+5
+Enter a element to delete
+30
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+2
+10 20 35 40 
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+5
+Enter a element to delete
+40
+
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+2
+10 20 35 
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+6
+Total no of nodes in list:3
+1.create(insert_at_end)
+2.Display
+3.Insertion_at_begin
+4.Insert_after
+5.Delete
+6.count
+7.exit
+Enter choice
+7
+*/
+
+// 4) i) Write a program that implement stack (its operations) using i)Arrays
+#include <iostream>
+using namespace std;
+#define max 50
+class stackk {
+public:
+    // int max=50;
+    int st[max];
+    int top = -1;
+    void push() {
+        int element;
+        cout << "enter the element to be pushed: ";
+        cin >> element;
+        if (top == max - 1) {
+            cout << "stack is full" << endl;
+            return;
+        } else {
+            top = top + 1;
+            st[top] = element;
+            cout << "element is pushed" << endl;
+        }
+    }
+    void pop() {
+        if (top == -1) {
+            cout << "stack is empty" << endl;
+            return;
+        } else {
+            cout << "element popped is " << st[top];
+            top = top - 1;
+        }
+        return;
+    }
+    void display() {
+        cout << "stack elements are: " << endl;
+        for (int i = top; i >= 0; i--) {
+            cout << st[i] << endl;
+        }
+    }
+};
+int main() {
+    stackk stk;
+    int option;
+    while (1) {
+        cout << endl;
+        cout << "Stack Operations" << endl;
+        cout << "1. push" << endl;
+        cout << "2. pop" << endl;
+        cout << "3. Display" << endl;
+        cout << "4. exit" << endl;
+        cout << "enter the option: ";
+        cin >> option;
+        switch (option) {
+            case 1:
+                stk.push();
+                break;
+            case 2:
+                stk.pop();
+                break;
+            case 3:
+                stk.display();
+                break;
+            case 4:
+                exit(1);
+            default:
+                cout << "wrong entry enter the correct option" << endl;
+        }
+    }
+    return 0;
+}
+
+/* output
+
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 1
+enter the element to be pushed: 10
+element is pushed
+
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 1
+enter the element to be pushed: 20
+element is pushed
+
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 1
+enter the element to be pushed: 30
+element is pushed
+
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 3
+stack elements are: 
+30
+20
+10
+
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 2
+element popped is 30
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 3
+stack elements are: 
+20
+10
+
+Stack Operations
+1. push
+2. pop
+3. Display
+4. exit
+enter the option: 4
+
+*/
+
+//  4) ii) Write a program that implement stack (its operations) using ii) Linkedlist
+#include <iostream>
+using namespace std;
+class Node {
+public:
+    int data;
+    Node *next;
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+};
+class Stack {
+public:
+    Node *top;
+    Stack() {
+        top = NULL;
+    }
+    void push(int data) {
+        Node *temp = new Node(data);
+        if (top == NULL) {
+            top = temp;
+            return;
+        }
+        temp->next = top;
+        top = temp;
+    }
+    int isEmpty() {
+        return top == NULL;
+    }
+    int peek() {
+        if (!isEmpty())
+            return top->data;
+        else
+            exit(1);
+    }
+    int pop() {
+        class Node *temp;
+        if (top == NULL) {
+            cout << "\nStack Underflow" << endl;
+            exit(1);
+        } else {
+            int dat = top->data;
+            temp = top;
+            top = top->next;
+            temp->next = NULL;
+            delete temp;
+            return dat;
+        }
+    }
+    void display() {
+        class Node *temp;
+        if (top == NULL) {
+            cout << "\nStack Underflow";
+            exit(1);
+        } else {
+            temp = top;
+            while (temp->next != NULL) {
+                cout << temp->data << " -> ";
+                temp = temp->next;
+            }
+            cout << temp->data << endl;
+        }
+    }
+};
+int main() {
+    Stack st;
+    int ch, ele;
+    while (1) {
+        cout << "1.push  2.pop  3.display  4.exit\nEnter ur choice ";
+        cin >> ch;
+        switch (ch) {
+            case 1:
+                cout << "enter the element ";
+                cin >> ele;
+                st.push(ele);
+                break;
+            case 2:
+                cout << "deleted  " << st.pop() << endl;
+                break;
+            case 3:
+                st.display();
+                break;
+            case 4:
+                exit(0);
+        }
+    }
+    return 0;
+}
+
+// Output :
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 1
+// enter the element 5
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 1
+// enter the element 10
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 1
+// enter the element 15
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 1
+// enter the element 20
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 3
+// 20 -> 15 -> 10 -> 5
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 2
+// deleted  20
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 2
+// deleted  15
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 3
+// 10 -> 5
+// 1.push  2.pop  3.display  4.exit
+// Enter ur choice 4
+
+// 4)b) Infix to Postfix Conversion using Stack
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Solution {
+public:
+    void infixToPostfixSol() {
+        stack<char> st;
+        string exp;
+        cout << "Enter expression" << endl;
+        cin >> exp;
+        for (int i = 0; i < exp.length(); i++) {
+            if (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/') {
+                while (!st.empty() && st.top() != '(' && (st.top() == '+' || st.top() == '-' || st.top() == '*' || st.top() == '/')) {
+                    cout << st.top();
+                    st.pop();
+                }
+                st.push(exp[i]);
+            } else if (exp[i] == '(') {
+                st.push(exp[i]);
+            } else if (exp[i] == ')') {
+                while (!st.empty() && st.top() != '(') {
+                    cout << st.top();
+                    st.pop();
+                }
+                st.pop();
+            } else {
+                cout << exp[i];
+            }
+        }
+        while (!st.empty()) {
+            cout << st.top();
+            st.pop();
+        }
+        cout << endl;
+    }
+};
+
+int main(){
+    Solution solution;
+    solution.infixToPostfixSol();
+}
+
+/*
+Output
+
+Enter expression
+a+b*c/d-e
+ab+c*d/e-
+
+*/
+
+4)c) Check for balanced parentheses in an expression using stack
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Solution {
+public:
+    void BalancedParenthesis() {
+        stack<char> st;
+        string exp;
+        cout << "Enter expression" << endl;
+        cin >> exp;
+        for (int i = 0; i < exp.length(); i++) {
+            if (exp[i] == '(') {
+                st.push(exp[i]);
+            } else if (exp[i] == ')') {
+                if (st.empty()) {
+                    cout << "Not balanced\n";
+                    return;
+                }
+                st.pop();
+            }
+        }
+        if (st.empty()) {
+            cout << "Balanced\n";
+        } else {
+            cout << "Not balanced\n";
+        }
+        cout << endl;
+    }
+};
+
+int main(){
+    Solution solution;
+    solution.BalancedParenthesis();
+}
+
+OutPut : 
+Enter expression
+{[()]}
+Balanced
+
+4)d) String Palindrome using Stack
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Solution {
+public:
+    void stringPalindrome() {
+        string exp;
+        cout << "Enter expression" << endl;
+        cin >> exp;
+        int l = 0, r = exp.length() - 1;
+        while (l < r) {
+            if (exp[l] != exp[r]) {
+                cout << "Not a palindrome\n";
+                return;
+            }
+            l++;
+            r--;
+        }
+        cout << "Palindrome\n";
+    }
+};
+int main() {
+    Solution solution;
+    solution.stringPalindrome();
+}
+
+Output : 
+
+Enter expression
+RORITOTIROR
+Palindrome
+
+5) a) Write a program that implement Queue (its operations) using i) Arrays
+
+#include <iostream>
+using namespace std;
+int queue[100], n = 100, front = -1, rear = -1;
+void Insert()
+{
+    int val;
+    if (rear == n - 1)
+        cout << "Queue Overflow" << endl;
+    else
+    {
+        if (front == -1)
+            front = 0;
+        cout << "Insert the element in queue : " << endl;
+        cin >> val;
+        rear++;
+        queue[rear] = val;
+    }
+    cout << endl;
+}
+void Delete()
+{
+    if (front == -1 || front > rear)
+    {
+        cout << "Queue Underflow ";
+        return;
+    }
+    else
+    {
+        cout << "Element deleted from queue is : " << queue[front] << endl;
+        front++;
+    }
+    cout << endl;
+}
+void Display()
+{
+    if (front == -1)
+        cout << "Queue is empty" << endl;
+    else
+    {
+        cout << "Queue elements are : ";
+        for (int i = front; i <= rear; i++)
+            cout << queue[i] << " ";
+    }
+    cout << endl;
+}
+int main()
+{
+    int ch;
+    do
+    {
+        cout << "1) Insert 2) Delete 3) Display all the elements 4) Exit" << endl;
+        cout << "Enter your choice : ";
+        cin>> ch;
+        switch (ch)
+        {
+        case 1:
+            Insert();
+            break;
+        case 2:
+            Delete();
+            break;
+        case 3:
+            Display();
+            break;
+        case 4:
+            cout << "Exit" << endl;
+            break;
+        default:
+            cout << "Invalid choice" << endl;
+        }
+    } while (ch != 4);
+    return 0;
+}
+
+/*
+
+Output
+
+1) Insert 2) Delete 3) Display all the elements 4) Exit
+Enter your choice : 1
+Insert the element in queue : 
+10
+
+1) Insert 2) Delete 3) Display all the elements 4) Exit
+Enter your choice : 1
+Insert the element in queue : 
+20
+
+1) Insert 2) Delete 3) Display all the elements 4) Exit
+Enter your choice : 1
+Insert the element in queue : 
+30
+
+1) Insert 2) Delete 3) Display all the elements 4) Exit
+Enter your choice : 3
+Queue elements are : 10 20 30 
+1) Insert 2) Delete 3) Display all the elements 4) Exit
+Enter your choice : 2
+Element deleted from queue is : 10
+
+1) Insert 2) Delete 3) Display all the elements 4) Exit
+Enter your choice : 4
+Exit
+
+*/
+
+5) a) Write a program that implement Queue (its operations) using i) Linkedlist
+
+#include <iostream>
+using namespace std;
+
+class Node
+{
+public:
+    Node *next;
+    int data;
+    Node(int d)
+    {
+        data = d;
+        next = NULL;
+    }
+};
+
+class Queue
+{
+    Node *front, *rear;
+
+public:
+    Queue()
+    {
+        front = NULL;
+        rear = NULL;
+    }
+    void push(int data);
+    int pop();
+    void display();
+};
+
+void Queue::push(int data)
+{
+    Node *temp = new Node(data);
+    if (temp == NULL)
+    {
+        cout << "OVERFLOW" << endl;
+        return;
+    }
+    if (front == NULL)
+    {
+        front = rear = temp;
+        return;
+    }
+    rear->next = temp;
+    rear = rear->next;
+}
+
+int Queue::pop()
+{
+    if (front == NULL || rear == NULL)
+    {
+        cout << "UNDERFLOW" << endl;
+        exit(0);
+    }
+    if (front != rear)
+    {
+        int t = front->data;
+        // cout << front->data << " ";
+        Node *temp = front;
+        Node *te = front;
+        front = front->next;
+        delete temp;
+        return t;
+    }
+    else
+    {
+        int t = front->data;
+        delete front;
+        return t;
+    }
+}
+
+void Queue::display()
+{
+    Node *temp = front;
+    cout << "Elements in Queue are: ";
+    while (temp != NULL)
+    {
+        cout << temp->data << " " ;
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int ch, ele;
+    Queue q;
+    while (ch != 4)
+    {
+        printf("\n1.Insert 2.Delete 3.Display 4.Exit");
+        printf("\nEnter your choice: ");
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            cout << "enter the element ";
+            cin >> ele;
+            q.push(ele);
+            break;
+        case 2:
+        {
+            cout << "deleted " << q.pop() << endl;
+            break;
+        }
+        case 3:
+            q.display();
+            break;
+        }
+    }
+    return 0;
+}
+
+
+/*
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 1
+enter the element 10
+
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 1
+enter the element 20
+
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 1
+enter the element 30
+
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 3
+Elements in Queue are:  10 20 30
+
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 2
+deleted  10
+
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 3
+Elements in Queue are:  20 30
+
+1.Insert 2.Delete 3.Display 4.Exit
+Enter your choice: 4
+*/
+
+5) b) Queue implementation using two stacks.
+
+// implementing queue using 2 stacks
+#include <iostream>
+using namespace std;
+
+class Stack {
+public:
+    int *arr;
+    int top;
+    int capacity;
+    Stack(int capacity) {
+        this->capacity = capacity;
+        arr = new int[capacity];
+        top = -1;
+    }
+    bool isFull() {
+        return top == capacity - 1;
+    }
+    bool isEmpty() {
+        return top == -1;
+    }
+    void push(int item) {
+        if (isFull()) {
+            cout << "Stack is full" << endl;
+            return;
+        }
+        arr[++top] = item;
+    }
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack is empty" << endl;
+            return -1;
+        }
+        return arr[top--];
+    }
+};
+class Queue {
+public:
+    Stack *s1, *s2;
+    Queue(int capacity) {
+        s1 = new Stack(capacity);
+        s2 = new Stack(capacity);
+    }
+    bool isFull() {
+        return s1->isFull() && s2->isFull();
+    }
+    bool isEmpty() {
+        return s1->isEmpty() && s2->isEmpty();
+    }
+    void enqueue(int item) {
+        if (isFull()) {
+            cout << "Queue is full" << endl;
+            return;
+        }
+        s1->push(item);
+    }
+    int dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return -1;
+        }
+        if (s2->isEmpty()) {
+            while (!s1->isEmpty()) {
+                s2->push(s1->pop());
+            }
+        }
+        return s2->pop();
+    }
+};
+
+int main(){
+    int n, ch = 0, ele;
+    cout << "Enter number of items to queue : ";cin >> n;
+    Queue q(n);
+    for (int i = 0; i < n; i++){
+        cout << "Enter the element : ";
+        cin >> ele;
+        q.enqueue(ele);
+    }
+    cout << "\n\nElements in queue :  ";
+    for(int i = 0; i < n; i++)
+        cout << q.dequeue() << " ";
+    return 0;
+}
+
+Output : 
+
+Enter number of items to queue : 6
+Enter the element : 10
+Enter the element : 20
+Enter the element : 30
+Enter the element : 40
+Enter the element : 50
+Enter the element : 60
+
+
+Elements in queue :  10 20 30 40 50 60
+
+5) c) Check if a queue can be sorted into another queue using a stack
+
