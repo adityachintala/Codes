@@ -1,0 +1,89 @@
+<!-- Create a JS application that accepts the student's roll number, name, and marks and, when the form has been submitted, displays the student's name, roll number, and marks in a tabular format along with their GPA ( like a marks sheet) -->
+<!-- Path: WT\1-k\index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks Sheet</title>
+    <script>
+        window.onload = function () {
+            document.getElementById('btnSubmit').addEventListener('click', function () {
+                let name = document.getElementById('name').value;
+                let rollNo = document.getElementById('rollNo').value;
+                let sub1Name = document.getElementById('sub1Name').value;
+                let sub1Marks = document.getElementById('sub1Marks').value;
+                let sub2Name = document.getElementById('sub2Name').value;
+                let sub2Marks = document.getElementById('sub2Marks').value;
+                let sub3Name = document.getElementById('sub3Name').value;
+                let sub3Marks = document.getElementById('sub3Marks').value;
+                let gpa = (parseInt(sub1Marks) + parseInt(sub2Marks) + parseInt(sub3Marks)) / 3;
+                let table = document.createElement('table');
+                let tr = table.insertRow(-1);
+                let cell = tr.insertCell(-1);
+                cell.innerHTML = 'Name';
+                cell = tr.insertCell(-1);
+                cell.innerHTML = name;
+                tr = table.insertRow(-1);
+                cell = tr.insertCell(-1);
+                cell.innerHTML = 'Roll No';
+                cell = tr.insertCell(-1);
+                cell.innerHTML = rollNo;
+                tr = table.insertRow(-1);
+                cell = tr.insertCell(-1);
+                cell.innerHTML = sub1Name;
+                cell = tr.insertCell(-1);
+                cell.innherHTML = sub1Marks;
+                tr = table.insertRow(-1);
+                cell = tr.insertCell(-1);
+                cell.innerHTML = sub2Name;
+                cell = tr.insertCell(-1);
+                cell.innherHTML = sub2Marks;
+                tr = table.insertRow(-1);
+                cell = tr.insertCell(-1);
+                cell.innerHTML = sub3Name;
+                cell = tr.insertCell(-1);
+                cell.innherHTML = sub3Marks;
+                tr = table.insertRow(-1);
+                cell = tr.insertCell(-1);
+                cell.innerHTML = 'GPA';
+                cell = tr.insertCell(-1);
+                cell.innherHTML = gpa;
+                let dvTable = document.getElementById('dvTable');
+                dvTable.innerHTML = '';
+                dvTable.appendChild(table);
+            });
+        }
+    </script>
+    <style>
+        th, td, table {
+            border: solid 1px rgba(0, 0, 0, 0.428);
+        }
+    </style>
+</head>
+<body>
+    <div id="dvTable">
+        <form>
+            <h3>Enter Details:</h3>
+            <!-- Roll No : <input type="text" id="rollNo" name="rollNo"><br>
+            Name : <input type="text" id="name" name="name"><br>
+            Marks : <input type="number" id="marks" name="marks"><br>
+            GPA : <input type="number" id="gpa" name="gpa"><br> -->
+            <label for="name">Name : </label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="rollNo">Roll No : </label>
+            <input type="text" id="rollNo" name="rollNo"><br><br
+            <label for="sub1Marks">Subject-1 Marks : </label>
+            <input type="text" id="sub1Name" name="sub1Name">
+            <input type="number" id="sub1Marks" name="sub1Marks"><br><br
+            <label for="sub2Marks">Subject-2 Marks : </label>
+            <input type="text" id="sub2Name" name="sub2Name">
+            <input type="number" id="sub2Marks" name="sub2Marks"><br><br
+            <label for="sub3Marks">Subject-3 Marks : </label>
+            <input type="text" id="sub3Name" name="sub3Name">
+            <input type="number" id="sub3Marks" name="sub3Marks"><br><br
+            <br>
+            <input type="button" id="btnSubmit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

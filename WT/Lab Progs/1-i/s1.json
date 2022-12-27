@@ -1,0 +1,32 @@
+{
+    "student": [
+        {
+            "name": "Bhavana",
+            "age": 20,
+            "college": "KMIT",
+            "year": 3,
+            "sem": 1
+        },
+        {
+            "name": "Ram",
+            "age": 21,
+            "college": "JNTU",
+            "year": 4,
+            "sem": 2
+        },
+        {
+            "name": "John",
+            "age": 26,
+            "college": "KMEC",
+            "year": 1,
+            "sem": 1
+        },
+        {
+            "name": "Reena",
+            "age": 19,
+            "college": "NGIT",
+            "year": 3,
+            "sem": 1
+        }
+    ]
+}

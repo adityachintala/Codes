@@ -1,0 +1,151 @@
+<!-- 2) Write JS code in an HTML page such that based on location selected by the user an AJAX request is made and weather details for that location are fetched and displayed. –“index.htm
+api : 'https://api.openweathermap.org/data/2.5/weather?q='+zip+'&appid=93f26e3c57081a6210de53b8dcfdfea4' -->
+
+
+<!-- 
+    {
+    "coord": {
+        "lon": 79.6044,
+        "lat": 17.99
+    },
+    "weather": [
+        {
+            "id": 804,
+            "main": "Clouds",
+            "description": "overcast clouds",
+            "icon": "04n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 300.62,
+        "feels_like": 301.03,
+        "temp_min": 300.62,
+        "temp_max": 300.62,
+        "pressure": 1014,
+        "humidity": 50,
+        "sea_level": 1014,
+        "grnd_level": 984
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 4.07,
+        "deg": 172,
+        "gust": 7.39
+    },
+    "clouds": {
+        "all": 93
+    },
+    "dt": 1672150596,
+    "sys": {
+        "country": "IN",
+        "sunrise": 1672103444,
+        "sunset": 1672143238
+    },
+    "timezone": 19800,
+    "id": 1252948,
+    "name": "Warangal",
+    "cod": 200
+}
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>Weather App</title>
+    <script>
+        function getWeather(){
+            var zip = document.getElementById("zip").value;
+            var url = 'https://api.openweathermap.org/data/2.5/weather?q='+zip+'&appid=93f26e3c57081a6210de53b8dcfdfea4';
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET',url,true);
+            xhr.onload = function(){
+                if(this.status == 200){
+                    var data = JSON.parse(this.responseText);
+                    console.log(data);
+                    var temp = data.main.temp;
+                    var desc = data.weather[0].description;
+                    var icon = data.weather[0].icon;
+                    var country = data.sys.country;
+                    document.getElementById("country").innerHTML = country;
+                    document.getElementById("temp").innerHTML = temp;
+                    document.getElementById("desc").innerHTML = desc;
+                    document.getElementById("icon").src = "http://openweathermap.org/img/w/"+icon+".png";
+                }
+            }
+            let divDisp = document.getElementById("weather");
+            divDisp.style.display = "block";
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <div class = "container">
+        <div class = "jumbotron text-center">
+            <h1>Weather App</h1>
+            <br><br>
+            <h4>Enter the ZIP Code : </h4>
+            <input type = "text" id = "zip" placeholder = "ZIP Code">
+            <br> <br>
+            <button onclick = "getWeather()">Get Weather</button>
+        </div>
+    </div>
+    <!-- hide below div until called -->
+
+
+    <!--<div class = "container" style="display: none;" id="weather">
+        <div class = "jumbotron text-center">
+            <h1>Weather Details</h1>
+            <br><br>
+            <table>
+                <tr>
+                    <td>Country</td>
+                    <td id = "country"></td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td id = "temp"></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td id = "desc"></td>
+                </tr>
+                <tr>
+                    <td>Icon</td>
+                    <td><img src="" id = "icon"></td>
+                </tr>
+            </table>
+        </div> -->
+    
+    <div class="container jumbotron text-center" style ="display: none;" id = "weather">
+        <div class="container">
+            <table class = "table table-bordered">
+                <tr>
+                    <td>Country</td>
+                    <td id = "country"></td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td id = "temp"></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td id = "desc"></td>
+                </tr>
+                <tr>
+                    <td>Icon</td>
+                    <td><img src="" id = "icon"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

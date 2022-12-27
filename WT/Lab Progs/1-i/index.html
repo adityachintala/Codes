@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert JSON Data to HTML Table</title>
+    <script>
+        window.onload = function () {
+            fetch('s1.json')
+                .then(response => response.json())
+                .then(data => {
+                    let table = document.createElement('table');
+                    let tr = table.insertRow(-1);
+                    for (let key in data.student[0]) {
+                        let th = document.createElement('th');
+                        th.innerHTML = key;
+                        tr.appendChild(th);
+                    }
+                    for (let i = 0; i < data.student.length; i++) {
+                        tr = table.insertRow(-1);
+                        for (let key in data.student[i]) {
+                            let tabCell = tr.insertCell(-1);
+                            tabCell.innerHTML = data.student[i][key];
+                        }
+                    }
+                    let dvTable = document.getElementById('dvTable');
+                    dvTable.appendChild(table);
+                });
+        }
+    </script>
+    <style>
+        th, td, table {
+            border: solid 2px #DDD;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="dvTable"></div>
+</body>
+
+</html>
