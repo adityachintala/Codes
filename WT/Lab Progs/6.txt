@@ -1,0 +1,26 @@
+1.show dbs;
+
+2. use student;
+switched to db student
+insert into studentinfo collection
+3. db.studentinfo.insert({name:"john",id:"20bd1a05051",course:"b.tech",branch:"cse"})
+WriteResult({ "nInserted" : 1 })
+
+4. db.studentinfo.insert({name:"reena",id:"20bd1a0502",course:"M.tech",branch:"it"})
+WriteResult({ "nInserted" : 1 })
+
+5. db.studentinfo.insert({name:"ram",id:"20bd1a0503",course:"b.tech",branch:"cse"})
+WriteResult({ "nInserted" : 1 })
+
+
+
+
+
+
+EXPECTED OUTPUT 
+
+view studentinfo collection:
+6. db.studentinfo.find({})
+{ "_id" : ObjectId("62a99e693dbaba59a0af05cf"), "name" : "john", "id" : "20bd1a05051", "course" : "b.tech", "branch" : "cse" }
+{ "_id" : ObjectId("62a99ebd3dbaba59a0af05d0"), "name" : "reena", "id" : "20bd1a0502", "course" : "M.tech", "branch" : "it" }
+{ "_id" : ObjectId("62a99f123dbaba59a0af05d1"), "name" : "ram", "id" : "20bd1a0503", "course" : "b.tech", "branch" : "cse" }
