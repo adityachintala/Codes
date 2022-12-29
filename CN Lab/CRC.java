@@ -26,6 +26,7 @@ public class CRC {
         int gen[] = new int[m];
         for(int i = 0; i < m; i++)
             gen[i] = sc.nextInt();
+        sc.close();
         int gen_mat[] = new int[n + m - 1];
         for(int i = 0; i < n; i++)
             gen_mat[i] = arr[i];
