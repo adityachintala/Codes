@@ -31,9 +31,9 @@ public class dns {
                 System.out.print("Enter IP address : ");
                 String ip = sc.next();
                 try {
-                    InetAddress host = InetAddress.getByName(ip);
+                    InetAddress[] host = InetAddress.getAllByName(ip);
                     System.out.println("IP : " + ip);
-                    System.out.println("Host Name : " + host.getHostName());
+                    System.out.println("Host Name : " + host[0].getHostName());
                 } catch (Exception e) {
                     System.out.println("Host not found");
                 }
@@ -41,9 +41,8 @@ public class dns {
                 System.out.println("Exited");
                 break;
             }
-            sc.close();
         }
-
+        sc.close();
     }
 
 }

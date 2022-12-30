@@ -26,28 +26,28 @@ public class dvr {
     }    
 }
 /*
- * Enter number of nodes:
-3
-Enter the distance matrix:
+Enter number of nodes: 3
+Enter the distance matrix :
 1 0 99
 0 2 99
 3 2 0
 
-Router info for router: 01
-Destination      NextHop         Dist
-0               0               1
-1               1               0
-2               2               99
-Router info for router: 11
-Destination      NextHop         Dist
-0               0               0
-1               1               2
-2               2               99
-Router info for router: 21
-Destination      NextHop         Dist
-0               0               3
-1               1               2
-2               2               0
+Router info for router : 01
+Dest    NHop    Dist
+0       0       1
+1       1       0
+2       2       99
 
+Router info for router : 11
+Dest    NHop    Dist
+0       0       0
+1       1       2
+2       2       99
+
+Router info for router : 21
+Dest    NHop    Dist
+0       0       3
+1       1       2
+2       2       0
 
  */
